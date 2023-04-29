@@ -31,7 +31,7 @@
     height: 472px;
     display: flex; 
     flex-direction: column; /* 수직정렬 */
-    justify-content: space-between; /* 2023.04.28 guide */
+    justify-content: space-between; 
     align-items: center;
     margin-left: 3px;
     margin-right: 7px;
@@ -47,7 +47,7 @@
 }
 
 .today {
-    padding-top: 10px; /* 2023.04.28 guide */
+    padding-top: 10px; 
     font-size: 9px; /* 부모클래스 상속이용해 span 태그까지 적용 */
 }
 
@@ -92,14 +92,11 @@
 .left__body__profile {
     display: flex;
     flex-direction: column;
-
-    /* 2023.04.28 guide */
     width: 100%;
     height: 100%;
     justify-content: flex-start;
 }
 
-/* 2023.04.28 guide */
 .profile__detail {
     color: #999999;
     font-size: 10px;
@@ -108,10 +105,6 @@
     flex-direction: row;
 }
 
-/* .profile__detail > i {
-    color: #000000;
-} */
-
 .fas {
     color: black;
     margin-right: 10px;
@@ -119,13 +112,11 @@
     height: 5px;
 }
 
-/* 2023.04.28 guide */
 .left__body__footer {
     width: 100%;
     margin-bottom: 30px;
 }
 
-/* 2023.04.28 guide */
 .wrapper__feel {
     display: flex;
     flex-direction: column;
@@ -133,49 +124,48 @@
     width: 100%;
 }
 
-/* 2023.04.28 guide */
 .feel__title {
     font-size: 11px;
     margin-bottom: 5px;
     color: gray;
 }
-
-/* 2023.04.28 study */
-/* .left__body__profile > i {
-    margin: 5px 0px;
-} */
-
-/* 2023.04.28 study */
-/* .left__body__profile > i > span {
-    font-family: 'Malgun Gothic';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 9px;
-    line-height: 12px;
-    color: #999999;
-    margin-left: 5px;
-} */
-
-/* 2023.04.28 study */
-/* .left__body__footer {
-    top: 80px;
-    position: relative;
-
-    font-family: 'Malgun Gothic';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 15px;
-    color: #999999;
-} */
-
 .wrapper__right {
     width: 524px;
     height: 472px;
-    
-    /* 2023.04.28 guide */
     display: flex;
     flex-direction: column;
-    justify-content:flex-end;
+    justify-content:flex-end; 
     padding-left: 5px;
+}
+
+.wrapper__right__header {
+    width: 510px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0px 14px;
+}
+
+.right__header__title, .right__header__setting {
+    color: #55B2E4;
+    font-size: 9px;
+}
+
+.right__header__title {
+    font-size: 16px;
+}
+
+.wrapper__right__body {
+    width: 510px;
+    height: 445px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: white;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }

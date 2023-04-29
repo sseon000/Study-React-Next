@@ -4,7 +4,7 @@
  */
 const fruits = [
     {number: 1, title: "·¹µåÇâ"},
-    {number: , title: "»şÀÎ¸Ó½ºÄ¹"},
+    {number: 2, title: "»şÀÎ¸Ó½ºÄ¹"},
     {number: 3, title: "»êÃ»µş±â"},
     {number: 4, title: "ÇÑ¶óºÀ"},
     {number: 5, title: "»ç°ú"},
