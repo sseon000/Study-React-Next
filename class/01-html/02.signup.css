@@ -1,0 +1,387 @@
+body {
+    /* 회색 배경 */
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    left: 0px;
+    top: 0px;
+
+    background: #FFFFFF;
+}
+
+.container {
+    /* 회원가입 배경 */
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 670px;
+    height: 960px;
+    left: 625px;
+    top: 60px;
+
+    background: #FFFFFF;
+    border: 1px solid #AACDFF;
+    box-shadow: 7px 7px 39px rgba(0, 104, 255, 0.25);
+    border-radius: 20px;
+}
+
+.group5 {
+    /* Group 5 */
+    position: absolute;
+    width: 470px;
+    height: 818px;
+    left: 725px;
+    top: 132px;
+}
+
+.header {
+    /* 회원 가입을 위해 정보를 입력해주세요 */
+    position: absolute;
+    width: 466px;
+    height: 94px;
+    left: 725px;
+    top: 132px;
+
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 47px;
+
+    color: #0068FF;
+}
+
+.button {
+    /* 가입 버튼 */
+    position: absolute;
+    width: 470px;
+    height: 75px;
+    left: 725px;
+    top: 875px;
+}
+
+.btn-text {
+    /* 가입하기 */
+    position: absolute;
+    width: 80px;
+    height: 27px;
+    left: 925px;
+    top: 899px;
+
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #0068FF;
+}
+
+.Rectangle2 {
+    /* Rectangle 2 */
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 470px;
+    height: 75px;
+    left: 725px;
+    top: 875px;
+
+    background: #FFFFFF;
+    border: 1px solid #0068FF;
+    border-radius: 10px;
+}
+
+hr {
+    /* 선 */
+    position: absolute;
+    width: 470px;
+    height: 1px;
+    left: 725px;
+    top: 844px;
+
+    background: #E6E6E6;
+}
+
+.checkbox {
+    position: absolute;
+    width: 454px;
+    height: 21.06px;
+    left: 737px;
+    top: 792.94px;
+}
+
+input[type="checkbox"] {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 720px;
+    top: 792.94px;
+
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    border-radius: 3px;
+}
+
+.chk-text {
+    /* 이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. */
+    position: absolute;
+    width: 450px;
+    height: 21px;
+    left: 755px;
+    top: 795px;
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #000000;
+}
+
+.Ellipse8 {
+    /* Ellipse8 */
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 20px;
+    height: 19.95px;
+    left: 870px;
+    top: 721px;
+
+    background: #EBEBEB;
+    border: 1px solid #D2D2D2;
+}
+
+.El8-text {
+    /* 여성 */
+    position: absolute;
+    width: 40px;
+    height: 23.94px;
+    left: 900px;
+    top: 722px;
+
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+
+.Ellipse9 {
+    /* Ellipse9 */
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 20px;
+    height: 19.95px;
+    left: 975px;
+    top: 721px;
+
+    background: #EBEBEB;
+    border: 1px solid #D2D2D2;
+}
+
+.El9-text {
+    /* 남성 */
+    position: absolute;
+    width: 40px;
+    height: 23.94px;
+    left: 1010px;
+    top: 722px;
+
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.group1 {
+    /* Group 1 */
+    position: absolute;
+    width: 466px;
+    height: 80px;
+    left: 725px;
+    top: 286px;
+}
+
+.vector1 {
+    /* Vector 1 */
+    position: absolute;
+    width: 466px;
+    height: 0px;
+    left: 725px;
+    top: 366px;
+
+    border: 1px solid #0068FF;
+}
+
+.email {
+    /* 이메일 */
+    position: absolute;
+    width: 158px;
+    height: 23.65px;
+    left: 725px;
+    top: 286px;
+}
+
+.email-text {
+    /* * 이메일 */
+    position: absolute;
+    width: 158px;
+    height: 23.65px;
+    left: 725px;
+    top: 286px;
+
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+
+    color: #797979;
+}
+
+.group2 {
+    /* Group 2 */
+    position: absolute;
+    width: 466px;
+    height: 80px;
+    left: 725px;
+    top: 387px;
+}
+
+.vector2 {
+    position: absolute;
+    width: 466px;
+    height: 0px;
+    left: 725px;
+    top: 467px;
+
+    border: 1px solid #CFCFCF;
+}
+
+.name {
+    position: absolute;
+    width: 158px;
+    height: 23.65px;
+    left: 725px;
+    top: 387px;
+}
+
+.name-text {
+    /* * 이름 */
+    position: absolute;
+    width: 158px;
+    height: 23.65px;
+    left: 725px;
+    top: 387px;
+
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+
+    color: #797979;
+}
+
+.group3 {
+    position: absolute;
+    width: 466px;
+    height: 80px;
+    left: 725px;
+    top: 488px;
+}
+
+.vector3 {
+    position: absolute;
+    width: 466px;
+    height: 0px;
+    left: 725px;
+    top: 568px;
+    
+    border: 1px solid #CFCFCF;
+}
+
+.pass {
+    position: absolute;
+    width: 158px;
+    height: 23.65px;
+    left: 725px;
+    top: 488px;
+}
+
+.pass-text {
+    position: absolute;
+    width: 158px;
+    height: 23.65px;
+    left: 725px;
+    top: 488px;
+    
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    
+    color: #797979;
+}
+
+.group4 {
+    position: absolute;
+    width: 466px;
+    height: 80px;
+    left: 725px;
+    top: 589px;
+}
+
+.vector4 {
+    position: absolute;
+    width: 466px;
+    height: 0px;
+    left: 725px;
+    top: 669px;
+    
+    border: 1px solid #CFCFCF;
+}
+
+.passchk {
+    position: absolute;
+    width: 158px;
+    height: 23.65px;
+    left: 725px;
+    top: 589px;
+}
+
+.passchk-text {
+    position: absolute;
+    width: 158px;
+    height: 23.65px;
+    left: 725px;
+    top: 589px;
+    
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    
+    color: #797979;
+}
