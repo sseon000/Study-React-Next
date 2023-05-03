@@ -1,0 +1,22 @@
+/* 클래스선택자 */
+.title {
+    color: red;
+}
+
+/* 자손선택자 */
+.box1 .title {
+    color: yellow;
+}
+
+/* 클래스선택자 */
+.contents {
+    font-size: 28px;
+    font-style: italic;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* 다중선택자 */
+.title#headline { 
+    color: violet;
+}
