@@ -177,25 +177,20 @@ html, body {
 }
 
 .header {
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-bottom: 1px solid gray;
 }
 
 .header-inner {
     width: 900px;
     height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    flex-wrap: wrap;
+    margin: 0 auto;
 }
 
 .logo {
+    float: left;
     width: 100px;
+    height: 80px;
+    padding-top: 17px;
 }
 
 .logo h1 a {
@@ -203,26 +198,41 @@ html, body {
     color: orange;
 }
 
- .menu__ul {
-    display: flex;
-    flex-direction: row;
+.menu {
+    float: left;
+    width: calc(100% - 200px);
+    height: 80px;
+    text-align: center;
+}
+
+.menu__ul {
+    /* background-color: red; */
+    display: inline-block;
 }
 
 .menu__ul li {
+    float: left;
     list-style: none;
 }
 
 .menu__ul li a {
     display: block;
-    padding: 10px 20px;
-    text-decoration: none;
     color: black;
-} 
+    text-decoration: none;
+    padding: 29px 20px;
+}
+
+.user {
+    float: left;
+    width: 100px;
+    height: 80px;
+    padding-top: 23px;
+}
 
 .menu__ul li a:hover {
     color: orange;
 }
 
-.user {
-    width: 100px;
+.clearfix {
+    clear: both;
 }
