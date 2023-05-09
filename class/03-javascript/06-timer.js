@@ -33,7 +33,7 @@ const auth = () => {
                 clearInterval(timer)
             }
             
-        },1000)
+        }, 1000)
     } else {
         // 타이머가 작동중일때
     }
