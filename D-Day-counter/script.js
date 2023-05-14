@@ -1,5 +1,7 @@
 const messageContainer = document.querySelector('#d-day-message');
 const container = document.querySelector('#d-day-container');
+const savedDate = localStorage.getItem('saved-date');
+console.log('onload.savedDate : ' + savedDate);
 const intervalIdArr = [];
 
 container.style.display = 'none';
@@ -18,18 +20,24 @@ const dateFormMaker = function () {
 };
 
 const countMaker = function (data) { // 매개변수
-    // console.log(targetDateInput);
+    if(data !== savedDate) {
+        localStorage.setItem('saved-date',data); //localStorage 이용해 브라우저를 닫아도 데이터를 저장할 수 있게 활용~
+        console.log('countMaker.savedDate : ' + savedDate);
+    }
+
     const nowDate = new Date();
     const targetDate = new Date(data).setHours(0, 0, 0, 0);
     const remaining = (targetDate - nowDate) / 1000; // 목표 날짜까지 남은 초
 
     if(remaining <= 0) {
+        console.log('countMaker.remaining 0 : ' + savedDate);
         container.style.display = 'none';
         messageContainer.innerHTML = '<h3>타이머가 종료 되었습니다.</h3>';
         messageContainer.style.display = 'flex';
         setClearInterval();
         return;
     } else if(isNaN(remaining)) {
+        console.log('countMaker.remaining nan : ' + savedDate);
         container.style.display = 'none';
         messageContainer.innerHTML = '<h3>유효한 시간대가 아닙니다.</h3>';
         messageContainer.style.display = 'flex';
@@ -95,8 +103,14 @@ const countMaker = function (data) { // 매개변수
     */
 };
 
-const starter = function() {
-    const targetDateInput = dateFormMaker();
+const starter = function(targetDateInput) {
+    /**
+     * 카운트다운 시작 일 시에는 전달인자가 없으므로 입력받은 값으로 날짜 셋팅
+     */
+    if(!targetDateInput) {
+        targetDateInput = dateFormMaker();
+    }
+
     container.style.display = 'flex';
     messageContainer.style.display = 'none';
     setClearInterval();
@@ -111,11 +125,14 @@ const starter = function() {
     }
     */
 
-    const intervalId = setInterval( ()=> countMaker(targetDateInput), 1000); // 전달인자, setInterval 내에서 함수 실행시키려면 익명함수 내에서 실행시킬 함수 호출
+    const intervalId = setInterval( ()=> {
+        countMaker(targetDateInput)
+    }, 1000); // 전달인자, setInterval 내에서 함수 실행시키려면 익명함수 내에서 실행시킬 함수 호출
     intervalIdArr.push(intervalId);
 }
 
 const setClearInterval = function() {
+    localStorage.removeItem('saved-date');
     for(let i = 0; i < intervalIdArr.length; i++) { // setInterval 실행 횟 수 만큼 clearInterval
         clearInterval(intervalIdArr[i]);
     }
@@ -126,4 +143,16 @@ const resetTimer = function() {
     messageContainer.innerHTML = '<h3>D-Day를 입력해 주세요.</h3>';
     messageContainer.style.display = 'flex';
     setClearInterval();
+}
+
+/**
+ * falsy
+ * undefined, null, 0, '', NAN
+ */
+if(savedDate) {
+    console.log('savedDate : ' + savedDate);
+    starter(savedDate);
+} else {
+    container.style.display = 'none';
+    messageContainer.innerHTML = '<h3>D-Day를 입력해 주세요.</h3>';
 }
