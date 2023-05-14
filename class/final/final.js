@@ -95,5 +95,64 @@ function getTokenTimerConfirm() {
 }
 
 function signup() {
+    const email = document.getElementById("email").value
+    const writer = document.getElementById("writer").value
+    const password1 = document.getElementById("password1").value
+    const password2 = document.getElementById("password2").value
+    const location = document.getElementById("location").value
+    const genderWoman = document.getElementById("gender__woman").checked
+    const genderMan = document.getElementById("gender__man").checked
 
+    let isValid = true
+    if(email.includes("@") === false) {
+        document.getElementById("error__email").innerText = "이메일이 올바르지 않습니다."
+        isValid = false
+    } else {
+        document.getElementById("error__email").innerText = ""
+    }
+
+    if(writer === "") {
+        document.getElementById("error__writer").innerText = "이름이 올바르지 않습니다."
+        isValid = false
+    } else {
+        document.getElementById("error__writer").innerText = ""
+    }
+
+    if(password1 === ""){
+        document.getElementById("error__password1").innerText = "비밀번호를 입력해 주세요."
+        isValid = false
+    } else {
+        document.getElementById("error__password1").innerText = ""
+    }
+
+    if(password2 === ""){
+        document.getElementById("error__password2").innerText = "비밀번호를 입력해 주세요."
+        isValid = false
+    } else {
+        document.getElementById("error__password2").innerText = ""
+    }
+
+    if(password1 !== password2) {
+        document.getElementById("error__password1").innerText = "비밀번호가 일치하지 않습니다."
+        document.getElementById("error__password2").innerText = "비밀번호가 일치하지 않습니다."
+        isValid = false
+    }
+
+    if(location !== "서울" && location !== "경기" && location !== "인천"){
+        document.getElementById("error__location").innerText = "지역을 선택해 주세요."
+        isValid = false
+    } else {
+        document.getElementById("error__location").innerText = ""
+    }
+
+    if(genderWoman === false && genderMan === false){
+        document.getElementById("error__gender").innerText = "성별을 선택해 주세요."
+        isValid = false
+    } else {
+        document.getElementById("error__gender").innerText = ""
+    }
+
+    if(isValid === true){
+        alert("코드캠프 가입을 축하합니다.")
+    }
 }
