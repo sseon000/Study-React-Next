@@ -76,11 +76,26 @@ if(savedTodoList) {
     }
 }
 
+const accessToGeo = function(position) {
+    const positionObj = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+    }
+
+    console.log(positionObj);
+}
+
 const askForLocation = function() {
     
-    navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
+    /**
+     * 2023.05.17 [ issue ]
+     * live server로 실행시 보안정책상 api호출이 안됨.
+     * localhost는 예외이므로 개발시엔 localhost로 대체  
+     * live server는 보안정책 해제 못하나?? live server 도메인을 localhost로..?
+     **/  
+    navigator.geolocation.getCurrentPosition(accessToGeo, (err) => {
+        console.log(err);
     });
-    console.log('geo호출');
+    
 }
 askForLocation();
