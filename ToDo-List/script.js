@@ -2,17 +2,11 @@ const todoInput = document.querySelector('#todo-input');
 const todoList = document.querySelector('#todo-list');
 
 const savedTodoList = JSON.parse(localStorage.getItem('saved-items'));
-console.log(savedTodoList);
+//console.log(savedTodoList);
 
-if(savedTodoList) {
-    for(let i = 0; i < savedTodoList.length; i++) {
-        createTodo(savedTodoList[i]);
-    }
-}
-
-// 함수 표현식
+// 함수 표현식 : hoisting X
 const createTodo = function(storageData) {
-// function createTodo() {} 함수 선언식
+// function createTodo() {} 함수 선언식 : hoisting O
 
     let todoContents = todoInput.value;
 
@@ -32,7 +26,12 @@ const createTodo = function(storageData) {
 
     newLi.addEventListener('dblclick', () => {
         newLi.remove();
+        saveItemsFn();
     });
+
+    if(storageData?.complete) {  // 옵셔널체이닝 : undefined, null check
+        newLi.classList.add('complete');
+    }
 
     newSpan.textContent = todoContents;
     newLi.appendChild(newBtn);
@@ -53,6 +52,7 @@ const deleteAll = function() {
     for(let i = 0; i < liList.length; i++) {
         liList[i].remove();
     }
+    saveItemsFn();
 }
 
 const saveItemsFn = function() {
@@ -65,7 +65,22 @@ const saveItemsFn = function() {
         saveItems.push(todoObj);
     }
 
-    console.log(JSON.stringify(saveItems));
-    localStorage.setItem('saved-items',JSON.stringify(saveItems));
-
+    saveItems.length === 0 
+        ? localStorage.removeItem('saved-items') 
+        : localStorage.setItem('saved-items',JSON.stringify(saveItems));
 }
+
+if(savedTodoList) {
+    for(let i = 0; i < savedTodoList.length; i++) {
+        createTodo(savedTodoList[i]);
+    }
+}
+
+const askForLocation = function() {
+    
+    navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+    });
+    console.log('geo호출');
+}
+askForLocation();
