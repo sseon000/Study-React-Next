@@ -1,6 +1,7 @@
 const todoInput = document.querySelector('#todo-input');
 const todoList = document.querySelector('#todo-list');
 
+const savedWeatherData = JSON.parse(localStorage.getItem('saved-weather'));
 const savedTodoList = JSON.parse(localStorage.getItem('saved-items'));
 //console.log(savedTodoList);
 
@@ -42,7 +43,7 @@ const createTodo = function(storageData) {
 }
 
 const keyCodeCheck = function() {
-    if(window.event.keyCode === 13 && todoInput.value !== '') {
+    if(window.event.keyCode === 13 && todoInput.value.trim() !== '') {
         createTodo();
     }
 }
@@ -76,13 +77,66 @@ if(savedTodoList) {
     }
 }
 
-const accessToGeo = function(position) {
+const weatherDataActive = function({ location, weather }) {
+    const weatherMainList = [
+        'Clear',
+        'Clouds',
+        'Drizzle',
+        'Rain',
+        'Snow',
+        'Thunderstorm'
+    ];
+    weather = weatherMainList.includes(weather) ? weather : 'Fog';
+    const locationNameTag = document.querySelector('#location-name-tag');
+
+    locationNameTag.textContent = location;
+    document.body.style.backgroundImage = `url('./images/${weather}.jpg')`
+
+    if(
+        !savedWeatherData ||
+        savedWeatherData?.location !== location || // 옵셔널체이닝 : undefined, null check
+        savedWeatherData?.weather !== weather
+    ) {
+        localStorage.setItem('saved-weather',JSON.stringify( {location, weather} ))
+    }
+}
+
+const weatherSearch = function({latitude, longitude}) {
+    const openWeatherRes = fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=f90d35bfe4e34c531aa7cb7a3656efb8`
+    )
+    .then((res) => {
+        // JSON.parse() 응답헤더가 존재하면 사용할 수 없음! -> .json() 사용
+        return res.json();
+    })
+    .then((json) => {
+        const weatherData = {
+            location: json.name,
+            weather: json.weather[0].main
+        }
+        weatherDataActive(weatherData);
+    })
+    .catch((err) => {
+        console.error(err);
+    })
+    
+}
+
+const accessToGeo = function({ coords }) {
+    const { latitude, longitude } = coords
+    /* 구조분해할당으로 변경
     const positionObj = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
+        latitude: coords.latitude,
+        longitude: coords.longitude
+    }
+    */
+   // shorthand property
+    const positionObj = {
+        latitude,
+        longitude
     }
 
-    console.log(positionObj);
+    weatherSearch(positionObj)
 }
 
 const askForLocation = function() {
@@ -99,3 +153,7 @@ const askForLocation = function() {
     
 }
 askForLocation();
+if(savedWeatherData) {
+    weatherDataActive(savedWeatherData);
+}
+
