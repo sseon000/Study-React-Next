@@ -133,7 +133,7 @@ export const MainInputRadio = styled.input`
     margin-right: 5px;
 `
 
-export const Button = styled.div`
+export const Button = styled.button`
     width: 120px;
     height: 32px;
     background-color: yellow;
@@ -142,6 +142,7 @@ export const Button = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `
 
 export const RadioSpan = styled.span`
@@ -149,3 +150,9 @@ export const RadioSpan = styled.span`
     align-items: center;
     margin-left: 3px;
 `
+
+export const Error = styled.div`
+    padding-top: 10px;
+    font-size: 14px;
+    color: red;
+`;
