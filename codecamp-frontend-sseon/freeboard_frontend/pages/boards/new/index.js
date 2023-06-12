@@ -20,8 +20,19 @@ import {
     Button,
     RadioSpan,
     Error} from '../../../styles/boardNew';
+import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
+
+const CREATE_BOARD = gql`
+    mutation createBoard($createBoardInput: CreateBoardInput!) {
+        createBoard(createBoardInput: $createBoardInput) {
+            _id
+        }
+    }
+`
 
 export default function NewPage() {
+    const router = useRouter()
 
     const [ writer, setWriter ] = useState("");
     const [ pw, setPw ] = useState("");
@@ -39,6 +50,8 @@ export default function NewPage() {
     const [ errMainAddr, setErrMainAddr ] = useState("");
     const [ errDetailAddr, setErrDetailAddr ] = useState("");
 
+    const [ createBoard ] = useMutation(CREATE_BOARD);
+
     function onChangeWriter(event) { setWriter(event.target.value); }
     function onChangePw(event) { setPw(event.target.value); }
     function onChangeTitle(event) { setTitle(event.target.value); }
@@ -47,7 +60,7 @@ export default function NewPage() {
     function onChangeMainAddr(event) { setMainAddr(event.target.value); }
     function onChangeDetailAddr(event) { setDetailAddr(event.target.value); }
     
-    function onClickSignup() {
+    async function onClickSignup() {
         setErrWriter("");
         setErrPw("");
         setErrTitle("");
@@ -73,7 +86,23 @@ export default function NewPage() {
             setErrDetailAddr("상세주소를 입력해주세요!!");
         } else {
             // 메시지 알림 이후, Backend 컴퓨터에있는 API(함수) 요청하기
-            alert("게시글이 등록됐습니다!!")
+            try {
+                const result = await createBoard({
+                    variables: {
+                        createBoardInput: {
+                            writer: writer,
+                            pw: pw,
+                            title: title,
+                            contents: contents
+                        }
+                    }
+                })
+                Router.push(`/boards/${result.data.createBoard_id}`)
+
+                alert("게시글이 등록됐습니다!!")
+            } catch(error) {
+                alert(error.message)
+            }
         }
     }
 
