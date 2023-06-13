@@ -20,7 +20,7 @@ import {
     Button,
     RadioSpan,
     Error} from '../../../styles/boardNew';
-import { useMutation } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 
 const CREATE_BOARD = gql`
@@ -90,16 +90,17 @@ export default function NewPage() {
                 const result = await createBoard({
                     variables: {
                         createBoardInput: {
-                            writer: writer,
-                            pw: pw,
-                            title: title,
-                            contents: contents
+                            //writer: writer, js object key = value -> shorthand-property
+                            writer,
+                            pw,
+                            title,
+                            content
                         }
                     }
                 })
-                Router.push(`/boards/${result.data.createBoard_id}`)
+                router.push(`/boards/${result.data.createBoard_id}`)
 
-                alert("게시글이 등록됐습니다!!")
+                //alert("게시글이 등록됐습니다!!")
             } catch(error) {
                 alert(error.message)
             }

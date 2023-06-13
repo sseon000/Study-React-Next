@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Avatar, AvatarWrapper, Body, BottomWrapper, Button, CardWrapper, Contents, CreatedAt, Header, Info, Title, Wrapper, Writer } from "../../../styles/boardDetail";
 
 
-export const FETCH_BOARD = gql`
+const FETCH_BOARD = gql`
     query fetchBoard($boardId: ID!) {
         fetchBoard(boardId: $boardId) {
             _id
@@ -14,7 +14,6 @@ export const FETCH_BOARD = gql`
         }
     }
 `;
-
 
 export default function BoardDetailPage() {
     const router = useRouter()
