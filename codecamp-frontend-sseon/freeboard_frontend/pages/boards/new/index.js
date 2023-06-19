@@ -2,6 +2,6 @@ import BoardWrite from "../../../src/components/units/board/write/BoardWrite.con
 
 export default function BoardWritePage() {   
     return (
-        <BoardWrite />
+        <BoardWrite isEdit={false}/>
     )
 }

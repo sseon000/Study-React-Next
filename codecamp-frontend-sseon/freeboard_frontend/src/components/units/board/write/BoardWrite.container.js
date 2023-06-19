@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { CREATE_BOARD } from './BoardWrite.queries';
+import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
 import BoardWriteUI from './BoardWrite.present';
 
-export default function BoardWrite() {
+export default function BoardWrite(props) {
     const router = useRouter()
 
     const [ writer, setWriter ] = useState("");
@@ -24,6 +24,7 @@ export default function BoardWrite() {
     const [ errDetailAddr, setErrDetailAddr ] = useState("");
 
     const [ createBoard ] = useMutation(CREATE_BOARD);
+    const [ updateBoard ] = useMutation(UPDATE_BOARD);
 
     function onChangeWriter(event) { setWriter(event.target.value); }
     function onChangePw(event) { setPw(event.target.value); }
@@ -33,6 +34,55 @@ export default function BoardWrite() {
     function onChangeMainAddr(event) { setMainAddr(event.target.value); }
     function onChangeDetailAddr(event) { setDetailAddr(event.target.value); }
     
+    async function onClickEdit() {
+        console.log(router.query.boardId);
+        setErrWriter("");
+        setErrPw("");
+        setErrTitle("");
+        setErrContent("");
+        setErrPost("");
+        setErrMainAddr("");
+        setErrDetailAddr("");
+
+        // validationCheck
+        if(writer.length === 0) {
+            setErrWriter("작성자를 입력해주세요!!");
+        } else if(pw.length === 0) {
+            setErrPw("비밀번호를 입력해주세요!!");
+        } else if(title.length === 0) {
+            setErrTitle("제목을 입력해주세요!!");
+        } else if(content.length === 0) {
+            setErrContent("내용을 입력해주세요!!");
+        } else if(post.length === 0) {
+            setErrPost("우편번호를 입력해주세요!!");
+        } else if(mainAddr.length === 0) {
+            setErrMainAddr("주소를 입력해주세요!!");
+        } else if(detailAddr.length === 0) {
+            setErrDetailAddr("상세주소를 입력해주세요!!");
+        } else {
+            // 메시지 알림 이후, Backend 컴퓨터에있는 API(함수) 요청하기
+            try {
+                const result = await updateBoard({
+                    variables: {
+                        updateBoardInput: {
+                            //writer: writer, js object key = value -> shorthand-property
+                            // writer: writer,
+                            title: title,
+                            contents: content,
+                        },
+                        // password: pw,
+                        boardId: router.query.boardId
+                        
+                    }
+                })
+                router.push(`/boards/${result.data.updateBoard._id}`)
+                //alert("게시글이 등록됐습니다!!")
+            } catch(error) {
+                alert(error.message)
+            }
+        }
+    }
+
     async function onClickSignup() {
         setErrWriter("");
         setErrPw("");
@@ -65,13 +115,13 @@ export default function BoardWrite() {
                         createBoardInput: {
                             //writer: writer, js object key = value -> shorthand-property
                             writer: writer,
-                            pw: pw,
+                            password: pw,
                             title: title,
-                            content: content
+                            contents: content
                         }
                     }
                 })
-                router.push(`/boards/${result.data.createBoard_id}`)
+                router.push(`/boards/${result.data.createBoard._id}`)
                 //alert("게시글이 등록됐습니다!!")
             } catch(error) {
                 alert(error.message)
@@ -89,6 +139,7 @@ export default function BoardWrite() {
             onChangeMainAddr={onChangeMainAddr}
             onChangeDetailAddr={onChangeDetailAddr}
             onClickSignup={onClickSignup}
+            onClickEdit={onClickEdit}
             errWriter={errWriter}
             errPw={errPw}
             errTitle={errTitle}
@@ -96,6 +147,7 @@ export default function BoardWrite() {
             errPost={errPost}
             errMainAddr={errMainAddr}
             errDetailAddr={errDetailAddr}
+            isEdit={props.isEdit}
         />
     )
 }

@@ -1,6 +1,6 @@
 import * as S from "./BoardDetail.styles";
 
-export default function BoardDetailUI({ data }) {
+export default function BoardDetailUI({ data, onClickMoveToEdit }) {
     return(
         <S.Wrapper>
             <S.CardWrapper>
@@ -22,7 +22,7 @@ export default function BoardDetailUI({ data }) {
             </S.CardWrapper>
             <S.BottomWrapper>
                 <S.Button>목록으로</S.Button>
-                <S.Button>수정하기</S.Button>
+                <S.Button onClick={onClickMoveToEdit}>수정하기</S.Button>
                 <S.Button>삭제하기</S.Button>
             </S.BottomWrapper>
         </S.Wrapper>

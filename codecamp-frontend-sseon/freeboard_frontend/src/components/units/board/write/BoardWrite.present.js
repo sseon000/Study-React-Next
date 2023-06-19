@@ -1,6 +1,6 @@
 import * as S from './BoardWrite.styles';
 
-export default function BoardWriteUI({ onChangeWriter, onChangePw, onChangeTitle, onChangeContent, onChangePost, onChangeMainAddr, onChangeDetailAddr, onClickSignup, errWriter, errPw, errTitle, errContent, errPost, errMainAddr, errDetailAddr}) {
+export default function BoardWriteUI({ onChangeWriter, onChangePw, onChangeTitle, onChangeContent, onChangePost, onChangeMainAddr, onChangeDetailAddr, onClickSignup, errWriter, errPw, errTitle, errContent, errPost, errMainAddr, errDetailAddr, isEdit, onClickEdit }) {
     return(
         <>
             <S.Container>
@@ -74,7 +74,7 @@ export default function BoardWriteUI({ onChangeWriter, onChangePw, onChangeTitle
                             </S.MainRadioWrapper>
                         </S.ContentWrapper>
                     </S.Content>
-                    <S.Button onClick={onClickSignup}>등록하기</S.Button>
+                    <S.Button onClick={isEdit ? onClickEdit : onClickSignup}>{isEdit ? "수정하기" : "등록하기"}</S.Button>
                 </S.Wrapper>    
             </S.Container>
         </>
