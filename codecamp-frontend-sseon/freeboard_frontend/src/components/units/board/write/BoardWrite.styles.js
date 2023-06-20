@@ -136,7 +136,7 @@ export const MainInputRadio = styled.input`
 export const Button = styled.button`
     width: 120px;
     height: 32px;
-    background-color: yellow;
+    background-color: ${(props => props.isActive ? "yellow" : "default")};
     color: black;
     display: flex;
     flex-direction: column;
