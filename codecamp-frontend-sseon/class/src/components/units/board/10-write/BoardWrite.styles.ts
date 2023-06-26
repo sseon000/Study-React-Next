@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
+import { IBlueButtonProps } from "./BoardWrite.types";
 
 export const RedInput = styled.input`
     border-color: red;
 `
 
-interface IProps {
-    myColor: boolean
-}
+
 export const BlueButton = styled.button`
-    background-color: ${((props: IProps) => props.myColor ? "yellow" : "default")};
+    background-color: ${((props: IBlueButtonProps) => props.myColor ? "yellow" : "default")};
 `

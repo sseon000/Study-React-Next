@@ -3,12 +3,10 @@ import { ChangeEvent, useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter"
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
+import { IBoardWriteProps, IMyvariables } from "./BoardWrite.types";
 
-interface IProps {
-    isEdit: boolean
-    data?: any
-}
-export default function BoardWrite(props: IProps) {
+
+export default function BoardWrite(props: IBoardWriteProps) {
     const router = useRouter();
     const [ myColor, setMyColor ] = useState(false);
 
@@ -34,12 +32,7 @@ export default function BoardWrite(props: IProps) {
     }
 
     const onClickUpdate = async () => {
-        interface IMyvariables {
-            number: number
-            writer?: string
-            title?: string
-            contents?: string
-        }
+        
         // 수정한 데이터만 뮤테이션 날리기
         const myvariables: IMyvariables = {
             number: Number(router.query.number)
