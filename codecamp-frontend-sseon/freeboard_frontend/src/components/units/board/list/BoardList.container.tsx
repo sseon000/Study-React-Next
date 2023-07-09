@@ -3,7 +3,6 @@ import { useQuery } from "@apollo/client";
 import { FETCH_BOARDS } from "./BoardList.queries";
 import { useRouter } from "next/router";
 import { IQuery, IQueryFetchBoardsArgs } from "../../../../commons/types/generated/types";
-import { MouseEvent } from 'react'
 
 export default function BoardList() {
   const router = useRouter();
@@ -16,8 +15,10 @@ export default function BoardList() {
     router.push("/boards/new");
   };
 
-  const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
-    router.push(`/boards/${event.target.id}`);
+  const onClickMoveToBoardDetail = (ev: React.MouseEvent<HTMLDivElement>) => {
+    const event = ev.target as HTMLDivElement    
+
+    router.push(`/boards/${event.id}`);
   };
 
   return (
