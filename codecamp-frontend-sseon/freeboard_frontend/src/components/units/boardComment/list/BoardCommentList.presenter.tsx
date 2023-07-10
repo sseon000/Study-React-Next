@@ -1,14 +1,25 @@
 import { getDate } from '../../../../commons/libraries/utils';
 import * as S from './BoardCommentList.styles'
+import { IBoardCommentListUIProps } from "./BoardCommentList.types";
 
-export default function BoardCommentListUI(props) {
+export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
+
+  const qqq = (event: any) => {
+    console.log('11111111111111');
+    alert(event.currentTarget.id + "님이 작성한 글입니다");
+  }
+
+  const zzz = () => {
+    alert("저는 zzz입니다");
+  }
+
   return (
       <div>
         {props.data?.fetchBoardComments.map((el) => (
-          <S.ItemWrapper>
+          <S.ItemWrapper id={el.writer} onClick={qqq}>
             <S.FlexWrapper>
               <S.Avatar src="/images/avatar.png" />
-              <S.MainWrapper>
+              <S.MainWrapper onClick={zzz}>
                 <S.WriterWrapper>
                   <S.Writer>{el.writer}</S.Writer>
                 </S.WriterWrapper>

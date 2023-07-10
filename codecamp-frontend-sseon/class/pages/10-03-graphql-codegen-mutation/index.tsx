@@ -11,7 +11,6 @@ const CREATE_BOARD = gql`
         }
     }
 `
-
 export default function GraphqlMutationPage() {
     const [writer, setWriter] = useState("");
     const [title, setTitle] = useState("");
