@@ -1,12 +1,32 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardCommentListUI from "./BoardCommentList.presenter";
-import { DELETE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "./BoardCommentList.queries";
-import { IQuery, IQueryFetchBoardCommentsArgs } from "../../../../commons/types/generated/types";
+import { IMutation, IMutationDeleteBoardCommentArgs, IQuery, IQueryFetchBoardCommentsArgs } from "../../../../commons/types/generated/types";
+import { 
+  DELETE_BOARD_COMMENT, 
+  FETCH_BOARD_COMMENTS,
+} from "./BoardCommentList.queries";
+import { useState,useEffect } from 'react';
 
 export default function BoardCommentList() {
   const router = useRouter();
-  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT)
+  useEffect((): any => {
+    if(typeof router.query.boardId !== "string") {
+      alert("올바르지 않은 게시글 아이디입니다.");
+      void router.push("/");
+      return <></>;
+    } 
+  },[router])
+  
+
+  const [isOpentDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const [myBoardCommentId, setMyBoardCommentId] = useState('');
+  const [myPassword, setMyPassword] = useState('');
+
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, 'deleteBoardComment'>,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT)
 
   const { data } = useQuery<
   Pick<IQuery, "fetchBoardComments">,
@@ -15,14 +35,13 @@ export default function BoardCommentList() {
     variables: { boardId: String(router.query.boardId) }
   });
 
-  const onClickDelete = async (ev: React.MouseEvent<HTMLDivElement>) => {
-    const myPassword = prompt("비밀번호를 입력하세요.")
+  const onClickDelete = async (event: React.MouseEvent<HTMLDivElement>) => {
+    if(!(event.target instanceof HTMLElement)) return;
     try {
-      const event = ev.target as HTMLDivElement    
       await deleteBoardComment({
         variables: {
           password: myPassword,
-          boardCommentId: event.id,
+          boardCommentId: event.target.id,
         },
         refetchQueries: [
           {
@@ -31,10 +50,29 @@ export default function BoardCommentList() {
           },
         ],
       });
+      setIsOpenDeleteModal(false);
     } catch (error: any) {
-      alert(error.message)
+      if(error instanceof Error) alert(error.message);
     }
   };
 
-  return <BoardCommentListUI data={data} onClickDelete={onClickDelete} />;
+  const onClickOpenDeleteModal = (event: React.MouseEvent<HTMLImageElement>) => {
+    if(!(event.target instanceof HTMLImageElement)) return;
+    setMyBoardCommentId(event.target.id);
+    setIsOpenDeleteModal(true);
+  }
+
+  const onChangeDeletePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMyPassword(event.target.value);
+  }
+
+  return (
+    <BoardCommentListUI 
+      data={data}
+      isOpentDeleteModal={isOpentDeleteModal}
+      onClickDelete={onClickDelete}
+      onClickOpenDeleteModal={onClickOpenDeleteModal}
+      onChangeDeletePassword={onChangeDeletePassword}
+    />
+  );
 }

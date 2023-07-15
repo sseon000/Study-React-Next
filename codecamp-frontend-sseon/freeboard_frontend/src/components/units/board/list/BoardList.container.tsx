@@ -15,10 +15,8 @@ export default function BoardList() {
     router.push("/boards/new");
   };
 
-  const onClickMoveToBoardDetail = (ev: React.MouseEvent<HTMLDivElement>) => {
-    const event = ev.target as HTMLDivElement    
-
-    router.push(`/boards/${event.id}`);
+  const onClickMoveToBoardDetail = (event: React.MouseEvent<HTMLDivElement>) => {
+    router.push(`/boards/${event.currentTarget.id}`);
   };
 
   return (

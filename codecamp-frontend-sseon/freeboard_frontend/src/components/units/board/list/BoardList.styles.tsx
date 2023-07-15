@@ -58,7 +58,9 @@ export const Footer = styled.div`
   padding-top: 50px;
 `;
 
-export const PencilIcon = styled.img``;
+export const PencilIcon = styled.img`
+  font-size: 16px;
+`;
 
 export const Button = styled.button`
   width: 171px;
