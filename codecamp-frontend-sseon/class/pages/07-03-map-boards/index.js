@@ -30,7 +30,6 @@ export default function StaticRoutedPage() {
     // <div> 제목: {data ? data.fetchBoards.title : "로딩중입니다.."}</div>
     // {/* 옵셔널 체이닝 */}
     // <div> 내용: {data?.fetchBoards.contents}</div>
-
     return(
         <>
             {data?.fetchBoards.map(el => {
