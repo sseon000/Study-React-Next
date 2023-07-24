@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { IQuery, IQueryFetchBoardsArgs } from "../../src/commons/types/generated/types";
+import { useState } from 'react';
 
 const FETCH_BOARDS = gql`
     query fetchBoards($page: Int) {
@@ -13,16 +14,27 @@ const FETCH_BOARDS = gql`
 `
 
 export default function StaticRoutedPage() {
+    const [startPage,setStartPage] = useState(1);
+
     // useQuery< , > : , 왼쪽은 데이터 타입 오른쪽이 인자(variables) 타입
     const {data, refetch} = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
         FETCH_BOARDS
     );
-
     // console.log(data?.fetchBoards);
 
     const onClickPage = (event: React.MouseEvent<HTMLSpanElement>) => {
-        console.log(event.currentTarget.id);
+        // console.log(event.currentTarget.id);
         void refetch({ page: Number(event.currentTarget.id)})
+    }
+
+    const onClickPrevPage = () => {
+        setStartPage(startPage - 10);
+        void refetch({page: startPage - 10})
+    }
+
+    const onClickNextPage = () => {
+        setStartPage(startPage + 10);
+        void refetch({page: startPage + 10})
     }
 
     return(
@@ -34,11 +46,13 @@ export default function StaticRoutedPage() {
                        </div>
             })}
            
+            <span onClick={onClickPrevPage}>이전페이지</span>
             {
                  Array(10).fill(1).map((_,idx) => {
-                    return <span key={idx+1} id={String(idx+1)} onClick={onClickPage}> {idx+1} </span>
+                    return <span key={idx+startPage} id={String(idx+startPage)} onClick={onClickPage}> {idx+startPage} </span>
                 })
             }
+            <span onClick={onClickNextPage}>다음페이지</span>
 
             {/* {
                 [1,2,3,4,5,6,7,8,9,10].map(el => {
