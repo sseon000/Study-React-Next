@@ -1,7 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { Modal } from 'antd';
 import { IMutation } from "../../src/commons/types/generated/types";
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 const UPLOAD_FILE = gql`
     mutaion uploadFile($file: Upload!){
@@ -12,6 +12,7 @@ const UPLOAD_FILE = gql`
 `
 
 export default function ImageUploadPage(){
+    const fileRef = useRef<HTMLInputElement>(null);
     const [imageUrl, setImageUrl] = useState("");
 
     const [uploadFile] = useMutation<Pick<IMutation, "uploadFile">, IMutationUploadFileArgs>(UPLOAD_FILE);
@@ -29,10 +30,17 @@ export default function ImageUploadPage(){
         }
     }
 
+    const onClickImage = () => {
+        fileRef.current?.click();
+    }
+
     // 파일을 여러개 선택하고 싶을 때는 multiple 속성 사용
     return (
         <>
-            <input type="file" onChange={onChangeFile} />
+            <div style={{width: '50px', height: '50px', backgroundColor: 'gray'}} onClick={onClickImage}>
+                이미지선택
+            </div>
+            <input style={{display: 'none'}} type="file" onChange={onChangeFile} ref={fileRef} />
             <img src={`https://storage.googleapis.com/${imageUrl}`} />
         </>
     )

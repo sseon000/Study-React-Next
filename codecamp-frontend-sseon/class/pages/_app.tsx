@@ -11,7 +11,7 @@ export default function App({ Component }: AppProps): JSX.Element {
     <ApolloSetting>
       <>
         <Global styles={globalStyles} />
-        <div>qqqqqqqqq</div>
+        {/* <div>qqqqqqqqq</div> */}
         <Layout>
             <Component />
         </Layout>
