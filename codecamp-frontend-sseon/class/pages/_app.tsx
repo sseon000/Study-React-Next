@@ -8,14 +8,16 @@ import { globalStyles } from '../src/commons/styles/globalStyles';
 
 export default function App({ Component }: AppProps): JSX.Element {
   return (
-    <ApolloSetting>
-      <>
-        <Global styles={globalStyles} />
-        {/* <div>qqqqqqqqq</div> */}
-        <Layout>
-            <Component />
-        </Layout>
-      </>
-    </ApolloSetting>
+    <Component />
   );
 }
+
+    // <ApolloSetting>
+    //   <>
+    //     <Global styles={globalStyles} />
+    //     {/* <div>qqqqqqqqq</div> */}
+    //     <Layout>
+    //         <Component />
+    //     </Layout>
+    //   </>
+    // </ApolloSetting>
