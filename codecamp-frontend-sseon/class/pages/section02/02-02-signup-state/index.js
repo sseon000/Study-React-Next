@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import RestGetPage from '../../section04/04-01-rest-get'
 
 export default function SingupStatePage(){
     const [email, setEmail] = useState("");
@@ -44,6 +45,7 @@ export default function SingupStatePage(){
             <div>{emailError}</div>
             비밀번호: <input type="password" onChange={onChangePassword} /> <br />
             <button onClick={onClickSignup}>회원가입</button>
+            <RestGetPage />
         </div>
     )
 }
