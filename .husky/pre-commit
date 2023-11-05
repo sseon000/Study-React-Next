@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# 수업진행을 위해 주석처리!! 기능만 알고, 실 프로젝트에 적용해보기
+#. "$(dirname -- "$0")/_/husky.sh"
+
+#yarn lint

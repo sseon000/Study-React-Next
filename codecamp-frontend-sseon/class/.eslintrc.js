@@ -8,9 +8,21 @@ module.exports = {
         "standard-with-typescript",
         "prettier"
     ],
-    "overrides": [],
+    "overrides": [
+        {
+            "env": {
+                "node": true
+            },
+            "files": [
+                ".eslintrc.{js,cjs}"
+            ],
+            "parserOptions": {
+                "sourceType": "script"
+            }
+        }
+    ],
     "parserOptions": {
-        "project":"./class/tsconfig.json",
+        "project": "**/tsconfig.json",
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
@@ -18,10 +30,7 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "@typescript-eslint/explicit-function-return-type":"off",
         "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/strict-boolean-expressions":"off",
-        "@typescript-eslint/no-misused-promises":"off",
-        "@typescript-eslint/triple-slash-reference":"off",
+        "@typescript-eslint/space-before-blocks": "off",
     }
 }
