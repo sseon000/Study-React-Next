@@ -1,15 +1,15 @@
-import { css } from '@emotion/react'
+import { css } from "@emotion/react";
 
 export const globalStyles = css`
-    * {
-        margin: 0;
-        box-sizing: border-box;
-        font-size: 15px;
-        // font-family: "myfont";
-    }
+  * {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 20px;
+    // font-family: "myfont";
+  }
 
-    @font-face {
-        font-family: "myfont";
-        src: url("/fonts/scifibit.ttf")
-    }
-`
+  @font-face {
+    font-family: "myfont";
+    src: url("/fonts/scifibit.ttf");
+  }
+`;

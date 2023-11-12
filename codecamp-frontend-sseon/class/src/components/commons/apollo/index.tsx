@@ -1,23 +1,17 @@
-import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink } from '@apollo/client'
-import { createUploadLink } from 'apollo-upload-client'
+// prettier-ignore
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 interface IApolloSettingProps {
-    children: JSX.Element
+  children: JSX.Element;
 }
-export default function ApolloSetting(props: IApolloSettingProps) {
-    const uploadLink = createUploadLink({
-        uri: "http://practice.codebootcamp.co.kr/graphql",
-    })
+export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
+  const client = new ApolloClient({
+    uri: "http://backend-example.codebootcamp.co.kr/graphql",
+    cache: new InMemoryCache(), // 컴퓨터의 메모리에다가 백엔드에서 받아온 데이터 임시로 저장해 놓기 => 나중에 더 자세히 알아보기
+  });
 
-    const client = new ApolloClient({
-        link: ApolloLink.from([uploadLink]),
-        // uri: "http://practice.codebootcamp.co.kr/graphql",
-        // uri: "http://backend09.codebootcamp.co.kr/graphql",
-        cache: new InMemoryCache()
-    })
-    
-    // prettier-ignore
-    return (
+  // prettier-ignore
+  return (
         <ApolloProvider client={client}> 
             {props.children}
         </ApolloProvider>
