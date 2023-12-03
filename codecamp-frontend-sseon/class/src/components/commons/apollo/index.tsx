@@ -1,6 +1,9 @@
 // prettier-ignore
 import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../commons/stores";
+import { useEffect } from "react";
 
 const GLOBAL_STATE = new InMemoryCache();
 
@@ -8,8 +11,40 @@ interface IApolloSettingProps {
   children: JSX.Element;
 }
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+
+  // 프리렌더링 예제1 - process.broswer 방법
+  // if (process.browser) {
+  //   console.log("지금은 브라우저다!!!");
+  //   const result = localStorage.getItem("accessToken");
+  //   console.log("apollo : " + result);
+  //   setAccessToken(result ?? "");
+  // } else {
+  //   console.log(
+  //     "지금은 프론테엔드 서버다!!!(즉, yarn dev로 실행시킨 프로그램 내부!!"
+  //   );
+  // }
+
+  // // 프리렌더링 예제2 - typeof window 방법
+  // if (typeof window === "undefined") {
+  //   console.log("지금은 브라우저다!!!");
+  // } else {
+  //   console.log(
+  //     "지금은 프론테엔드 서버다!!!(즉, yarn dev로 실행시킨 프로그램 내부!!"
+  //   );
+  // }
+
+  // 프리렌더링 무시 - useEffect 방법
+  useEffect(() => {
+    const result = localStorage.getItem("accessToken");
+    setAccessToken(result ?? "");
+  }, []);
+
   const uploadLink = createUploadLink({
     uri: "http://backend-practice.codebootcamp.co.kr/graphql", // section19-01-image-upload
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    }, // 모든 graphql api요청에 header를 추가함
   });
 
   const client = new ApolloClient({

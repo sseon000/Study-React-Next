@@ -20,7 +20,7 @@ interface IProps {
 }
 export default function Layout(props: IProps): JSX.Element {
   const router = useRouter();
-  console.log(router.asPath);
+  // console.log(router.asPath);
 
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
 
