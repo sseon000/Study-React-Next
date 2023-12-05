@@ -13,8 +13,8 @@ module.exports = {
   plugins: ["react"],
   rules: {
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/no-misused-promises": "off", // HOF를 배우고 나서 wrapAsync 함수로 해결 가능 (그 전까지는 off 할 예정)
     "@typescript-eslint/space-before-blocks": "off",
     "@typescript-eslint/consistent-type-imports": "off",
+    "react/display-name": "off",
   },
 };
