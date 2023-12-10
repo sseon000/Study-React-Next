@@ -16,5 +16,6 @@ module.exports = {
     "@typescript-eslint/space-before-blocks": "off",
     "@typescript-eslint/consistent-type-imports": "off",
     "react/display-name": "off",
+    "@typescript-eslint/naming-convention": "off",
   },
 };

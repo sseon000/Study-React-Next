@@ -1,0 +1,23 @@
+useQuery 만들어보기
+
+function useQeury(qqq){
+  // qqq(ex.FETCH_BOARD) API 요청하기
+
+  return {
+    data: {fetchBoard: {writer: "철수"}},
+    refetch: () => {
+      console.log("리페치 실행!")
+    }
+  }
+}
+
+const { data, refetch } = useQeury("FETCH_BOARD")
+data.fetchBoard.writer
+'철수'
+refetch()
+'리페치 실행'
+const result = useQeury("FETCH_BOARD")
+result.data.fetchBoard.writer
+'철수'
+result.fefetch()
+'리페치 실행'
