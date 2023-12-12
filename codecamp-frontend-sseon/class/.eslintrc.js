@@ -17,5 +17,6 @@ module.exports = {
     "@typescript-eslint/consistent-type-imports": "off",
     "react/display-name": "off",
     "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
   },
 };
