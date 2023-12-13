@@ -18,5 +18,6 @@ module.exports = {
     "react/display-name": "off",
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/no-unused-vars": "off",
   },
 };
