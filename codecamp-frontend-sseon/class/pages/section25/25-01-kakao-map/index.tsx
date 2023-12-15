@@ -21,7 +21,7 @@ export default function KakaoMapPage(): JSX.Element {
     <>
       <script
         type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdc6b92e4cc99f956525dc446dafcaf2"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey="
       ></script>
       <div id="map" style={{ width: 500, height: 400 }}></div>
     </>
