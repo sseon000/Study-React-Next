@@ -8,7 +8,7 @@ export default function KakaoMapPage(): JSX.Element {
   useEffect(() => {
     const script = document.createElement("script"); // <script></script>
     script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=fdc6b92e4cc99f956525dc446dafcaf2";
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=";
     document.head.appendChild(script);
 
     script.onload = () => {
@@ -30,7 +30,7 @@ export default function KakaoMapPage(): JSX.Element {
     <>
       {/* <script
         type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdc6b92e4cc99f956525dc446dafcaf2"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey="
       ></script> */}
       <div id="map" style={{ width: 500, height: 400 }}></div>
     </>
