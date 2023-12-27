@@ -3,7 +3,10 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 import type { AppProps } from "next/app";
 import Layout from "../src/components/commons/layout";
 import ApolloSetting from "../src/components/commons/apollo";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, RecoilEnv } from "recoil";
+
+// 개발환경기준 - 넥스트에서 리코일 사용시 파일이 변경되면 다시 빌드하는 과정에서 중복키 오류 발생 해결
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 export default function App({ Component }: AppProps): JSX.Element {
   return (
